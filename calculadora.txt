@@ -1,0 +1,55 @@
+import java.util.Random;
+public class Main
+{
+	public static void main(String[] args)
+	{
+		String quebra = System.getProperty("line.separator");
+		Random Rd = new Random();
+		int t, F, f, q=500;
+		double r[] = new double[q];
+		
+		// exercicios
+		for(t=0; t<q; t+=4){
+			F = Rd.nextInt(98)+2;
+			f = Rd.nextInt(98)+2;
+			r[t] = F*f;
+			System.out.println("Questão "+(t+1)+"_ "+F+"•"+f);
+			
+			if(((t+4)/4)%2==0){
+			F = Rd.nextInt(998)+2;
+			f = Rd.nextInt(998)+2;
+			r[t+1] = F*f;
+			System.out.println("Questão "+(t+2)+"_ "+F+"•"+f);}
+			else{
+			F = Rd.nextInt(998)+2;
+			f = Rd.nextInt(98)+2;
+			r[t+1] = F*f;
+			System.out.println("Questão "+(t+2)+"_ "+F+"•"+f);}
+			
+			f = Rd.nextInt(7)+2;
+			F = (Rd.nextInt(998)+2)*f;
+			r[t+2] = F*(Math.pow(f, -1));
+			System.out.println("Questão "+(t+3)+"_ "+F+"/"+f);
+			
+			if(((t+4)/4)%2==0){
+			F = Rd.nextInt(9998)+2;
+			f = Rd.nextInt(98)+2;
+			r[t+3] = 10F*(Math.pow(f, -1));
+			System.out.println("Questão "+(t+4)+"_ "+F+"/"+f);}
+			else{
+			F = Rd.nextInt(998)+2;
+			f = Rd.nextInt(98)+2;
+			r[t+3] = F*(Math.pow(f, -1));
+			System.out.println("Questão "+(t+4)+"_ "+F+"/"+f);}}
+			
+		System.out.println(quebra);
+
+		// gab
+		for(t=0; t<q; t++){
+			if ((t+1)%4==0)
+			System.out.println("Gab "+(t+1)+"_ "+String.format("%.3f", r[t]));
+			else
+			System.out.println("Gab "+(t+1)+"_ "+String.format("%.0f", r[t]));}
+		
+	}
+}

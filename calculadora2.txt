@@ -1,0 +1,52 @@
+import java.util.Random;
+public class Main
+{
+	public static void main(String[] args)
+	{
+		String quebra = System.getProperty("line.separator");
+		Random Rd = new Random();
+		int t, q=500;
+		double F, f, ff, r[] = new double[q];
+		
+		// exercicios
+		for(t=0; t<q; t+=4){
+			F = (Rd.nextInt(997)+2)*Math.pow(10, -1);
+			f = (Rd.nextInt(997)+2)*Math.pow(10, -1);;
+			r[t] = F*f;
+			System.out.println("Questão "+(t+1)+"_ "+String.format("%.3f", F)+"•"+String.format("%.3f", f));
+			
+			if(((t+4)/4)%2==0){
+			F = (Rd.nextInt(9997)+2)*Math.pow(10, -2);
+			f = (Rd.nextInt(9997)+2)*Math.pow(10, -2);
+			r[t+1] = F*f;
+			System.out.println("Questão "+(t+2)+"_ "+String.format("%.3f", F)+"•"+String.format("%.3f", f));}
+			else{
+			F = (Rd.nextInt(9997)+2)*Math.pow(10, -2);
+			f = (Rd.nextInt(997)+2)*Math.pow(10, -1);
+			r[t+1] = F*f;
+			System.out.println("Questão "+(t+2)+"_ "+String.format("%.3f", F)+"•"+String.format("%.3f", f));}
+			
+			f = (Rd.nextInt(997)+2)*f*Math.pow(10, -2);
+			F = (Rd.nextInt(97)+2)*f*Math.pow(10, -1);
+			r[t+2] = F*(Math.pow(f, -1));
+			System.out.println("Questão "+(t+3)+"_ "+String.format("%.3f", F)+"/"+String.format("%.3f", f));
+			
+			if(((t+4)/4)%2==0){
+			f = (Rd.nextInt(997)+2)*f*Math.pow(10, -2);
+			F = (Rd.nextInt(997)+2)*f*Math.pow(10, -2);
+			r[t+3] = F*(Math.pow(f, -1));
+			System.out.println("Questão "+(t+4)+"_ "+String.format("%.3f", F)+"/"+String.format("%.3f", f));}
+			else{
+			f = Rd.nextInt(9997)+2*Math.pow(10, -2);
+			F = (Rd.nextInt(97)+2)*f*Math.pow(10, -1);
+			r[t+3] = F*(Math.pow(f, -1));
+			System.out.println("Questão "+(t+4)+"_ "+String.format("%.3f", F)+"/"+String.format("%.3f", f));}}
+			
+		System.out.println(quebra);
+
+		// gab
+		for(t=0; t<q; t++)
+			System.out.println("Gab "+(t+1)+"_ "+String.format("%.4f", r[t]));
+		
+	}
+}

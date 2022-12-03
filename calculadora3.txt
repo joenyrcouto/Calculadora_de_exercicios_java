@@ -1,0 +1,211 @@
+import java.util.Random;
+public class Main
+{
+	public static void main(String[] args)
+	{
+		String quebra = System.getProperty("line.separator");
+		Random Rd = new Random();
+		int s, ale, t, x, y=0, z=0, w=0, q=3, p, chaves[] = new int[2], colchetes[][] = new int[2][4], parenteses[][][] = new int[2][4][3], operacao[][][][] = new int[2][4][3][3];
+		double a, b, c, d, e, r[] = new double[q], n[][][] = new double[2][4][3];
+		String A[] = new String[7], B[] = new String[7], C[] = new String[7], D, Z[][][] = new String[3][5][4], N[][][] = new String[2][4][3];
+		
+		// exercicios
+		for(p=0; p<q; p++){
+			
+		// limpar chaves, e etc
+		for(t=0; t<2; t++){
+			chaves[t] = 0;
+			Z[t+1][0][0] = "";
+			for(x=0; x<4; x++){
+				colchetes[t][x] = 0;
+				Z[t+1][x+1][0] = "";
+				for(y=0; y<3; y++){
+					parenteses[t][x][y] = 0;
+					Z[t+1][x+1][y+1] = "";
+					N[t][x][y] = "";}}}
+			
+			// blocos de chaves
+			for(x=0; x<2; x++){
+				if(chaves[0]==0)
+					ale = Rd.nextInt(4)+3;
+				else
+					if(x==1)
+						ale = Rd.nextInt(6)+1;
+					else{
+						ale = Rd.nextInt(7);
+						if(ale==1)
+						ale = 3;
+						else
+							if(ale==2)
+							ale = 4;}
+							
+				if(ale!=0){
+					chaves[x] = ale;
+					if(ale<5 && ale>0)
+						Z[x+1][0][0] = "}";
+					// blocos de colchetes
+					for(y=0; y<4; y++){
+						if(colchetes[x][0]==0 && colchetes[x][1]==0 && colchetes[x][2]==0){
+							ale = Rd.nextInt(6)+1;
+							if(ale==1)
+								ale = 3;
+							else
+								if(ale==2)
+									ale = 4;}
+						else
+							if(x==0){
+							ale = Rd.nextInt(7);
+							if(ale==1)
+								ale = 3;
+							else
+								if(ale==2)
+									ale = 4;}
+							else
+								if(colchetes[x][y-1]==0){
+									ale = Rd.nextInt(7);
+									if(ale==1)
+										ale = 3;
+									else
+										if(ale==2)
+											ale = 4;}
+								else
+									ale = Rd.nextInt(7);
+						if(ale!=0)
+							colchetes[x][y] = ale;
+							if(ale<5 && ale>0)
+								Z[x+1][y+1][0] = "]";
+					if(colchetes[x][y]==5 || colchetes[x][y]==6)
+						colchetes[x][y] = 0;
+							// blocos de parenteses
+							for(z=0; z<3; z++){
+								if(parenteses[x][y][0]==0 && parenteses[x][y][1]==0 && parenteses[x][y][2]==0){
+									ale = Rd.nextInt(6)+1;
+									if(ale==1)
+										ale = 3;
+									else
+										if(ale==2)
+											ale = 4;}
+									else
+									if(z==0){
+									ale = Rd.nextInt(7);
+									if(ale==1)
+										ale = 3;
+									else
+										if(ale==2)
+											ale = 4;}
+									else
+										if(parenteses[x][y][z-1]==0){
+											ale = Rd.nextInt(7);
+											if(ale==1)
+												ale = 3;
+											else
+												if(ale==2)
+													ale = 4;}
+										else
+											ale = Rd.nextInt(7);
+								if(ale!=0)
+									parenteses[x][y][z]=ale;
+									if(ale<5 && ale>0)
+										Z[x+1][y+1][z+1] = ")";
+									// bloco de operacoes
+									for(w=0; w<3; w++){
+										ale = Rd.nextInt(1)+1;
+										s = ale*10;
+										ale = Rd.nextInt(3)+1;
+										operacao[x][y][z][w] = s+ale;}}}}}
+			
+			// caracteres
+			A[0] = "";
+			A[1] = "•{";
+			A[2] = "÷{";
+			A[3] = "+{";
+			A[4] = "-{";
+			A[5] = "";
+			A[6] = "";
+			B[0] = "";
+			B[1] = "[";
+			B[2] = "÷[";
+			B[3] = "+[";
+			B[4] = "-[";
+			B[5] = "+";
+			B[6] = "-";
+			C[0] = "";
+			C[1] = "(";
+			C[2] = "÷(";
+			C[3] = "+(";
+			C[4] = "-(";
+			C[5] = "+";
+			C[6] = "-";
+			
+		// operacoes
+		for(t=0; t<2; t++){
+			for(x=0; x<4; x++){
+				for(y=0; y<3; y++){
+					a = Rd.nextInt(7)+2;
+					b = (Rd.nextInt(88)+11)*a;
+					c = (Rd.nextInt(7)+2)*a;
+					n[t][x][y] = b*(Math.pow(c, -1));
+					N[t][x][y] = b+"÷"+c;}}}
+			
+		// print doido das ideia
+		System.out.println(A[chaves[0]]+B[colchetes[0][0]]
++C[parenteses[0][0][0]]+N[0][0][0]+Z[1][1][1]
++C[parenteses[0][0][1]]+N[0][0][1]+Z[1][1][2]
++C[parenteses[0][0][2]]+N[0][0][2]+Z[1][1][3]
++Z[1][1][0]
++B[colchetes[0][1]]
++C[parenteses[0][1][0]]+N[0][1][0]+Z[1][2][1]
++C[parenteses[0][1][1]]+N[0][1][1]+Z[1][2][2]
++C[parenteses[0][1][2]]+N[0][1][2]+Z[1][2][3]
++Z[1][2][0]
++B[colchetes[0][2]]
++C[parenteses[0][2][0]]+N[0][2][0]+Z[1][3][1]
++C[parenteses[0][2][1]]+N[0][2][1]+Z[1][3][2]
++C[parenteses[0][2][2]]+N[0][2][2]+Z[1][3][3]
++Z[1][3][0]
++B[colchetes[0][3]]
++C[parenteses[0][3][0]]+N[0][3][0]+Z[1][4][1]
++C[parenteses[0][3][1]]+N[0][3][1]+Z[1][4][2]
++C[parenteses[0][3][2]]+N[0][3][2]+Z[1][4][3]
++Z[1][4][0]+Z[1][0][0]
+		
+											+A[chaves[1]]+B[colchetes[1][0]]
++C[parenteses[1][0][0]]+N[1][0][0]+Z[2][1][1]
++C[parenteses[1][0][1]]+N[1][0][1]+Z[2][1][2]
++C[parenteses[1][0][2]]+N[1][0][2]+Z[2][1][3]
++Z[2][1][0]
++B[colchetes[1][1]]
++C[parenteses[1][1][0]]+N[1][1][0]+Z[2][2][1]
++C[parenteses[1][1][1]]+N[1][1][1]+Z[2][2][2]
++C[parenteses[1][1][2]]+N[1][1][2]+Z[2][2][3]
++Z[2][2][0]
++B[colchetes[1][2]]
++C[parenteses[1][2][0]]+N[1][2][0]+Z[2][3][1]
++C[parenteses[1][2][1]]+N[1][2][1]+Z[2][3][2]
++C[parenteses[1][2][2]]+N[1][2][2]+Z[2][3][3]
++Z[2][3][0]
++B[colchetes[1][3]]
++C[parenteses[1][3][0]]+N[1][3][0]+Z[2][4][1]
++C[parenteses[1][3][1]]+N[1][3][1]+Z[2][4][2]
++C[parenteses[1][3][2]]+N[1][3][2]+Z[2][4][3]
++Z[2][4][0]+Z[2][0][0]);
+
+	System.out.println(" ");
+
+	r[p] = n[0][0][0]+n[0][0][1]+n[0][0][2]
+	+n[0][1][0]+n[0][1][1]+n[0][2][2]
+	+n[0][2][0]+n[0][2][1]+n[0][2][2]
+	+n[0][3][0]+n[0][3][1]+n[0][3][2]
+	+n[1][0][0]+n[1][0][1]+n[1][0][2]
+	+n[1][1][0]+n[1][1][1]+n[1][1][2]
+	+n[1][2][0]+n[1][2][1]+n[1][2][2]
+	+n[1][3][0]+n[1][3][1]+n[1][3][2];
+	
+													}
+
+		// gab
+		for(t=0; t<q; t++)
+			System.out.println("Gab "+(t+1)+"_ "+String.format("%.4f", r[t]));
+		
+	}
+}
